@@ -7,13 +7,20 @@ const NavBar = () => {
     justifyContent: "space-evenly",
   }));
 
+  const handleScroll = (id) => {
+    const section = document.getElementById(id);
+    if (section) {
+      section.scrollIntoView({ behavior: "smooth"})
+    }
+  }
+
   return (
     <>
       <AppBar position="absolute">
         <StyledToobar>
-          <MenuItem>Sobre</MenuItem>
-          <MenuItem>Skills</MenuItem>
-          <MenuItem>Projetos</MenuItem>
+          <MenuItem onClick={() => handleScroll("about")}>Sobre</MenuItem>
+          <MenuItem onClick={() => handleScroll("skills")}>Skills</MenuItem>
+          <MenuItem onClick={() => handleScroll("projects")}>Projetos</MenuItem>
         </StyledToobar>
       </AppBar>
     </>
