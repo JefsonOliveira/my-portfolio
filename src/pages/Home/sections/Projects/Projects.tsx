@@ -121,7 +121,7 @@ const Projects = () => {
                   </Button> */}
                   <Button
                     variant="outlined"
-                    sx={{ color: "#fff", borderColor: "#fff"}}
+                    sx={{ color: "#fff", borderColor: "#fff" }}
                     href={project.codeLink}
                   >
                     Ver o Código
