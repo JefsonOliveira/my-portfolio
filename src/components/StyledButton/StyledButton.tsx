@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
 import { styled } from "@mui/material";
 import { ReactNode } from "react";
 

@@ -2,7 +2,7 @@ import React from "react";
 import { Box, Typography, Button, Grid, Container } from "@mui/material";
 import { styled } from "@mui/system";
 
-import Avatar from "../../../../assets/images/Perfil.jpeg";
+import SemImagem from "../../../../assets/images/sem-imagem.jpg";
 
 const ProjectContainer = styled(Box)(({ theme }) => ({
   backgroundColor: "#333",
@@ -38,7 +38,7 @@ const Projects = () => {
     {
       name: "Projeto 1",
       duration: "Jan 2023 - Abril 2024",
-      image: Avatar,
+      image: SemImagem,
       description: "Descrição do projeto 1",
       technologies: "JavaScript, React, Material UI, etc.",
       siteLink: "https://link-do-site.com",
@@ -47,26 +47,26 @@ const Projects = () => {
     {
       name: "Projeto 2",
       duration: "Jan 2023 - Abril 2024",
-      image: Avatar,
+      image: SemImagem,
       description: "Descrição do projeto 2",
       technologies: "JavaScript, React, Tailwind, etc.",
       siteLink: "https://link-do-site.com",
       codeLink: "https://github.com/JefsonOliveira/projeto2",
     },
     {
-      name: "Projeto 1",
+      name: "Projeto 3",
       duration: "Jan 2023 - Abril 2024",
-      image: Avatar,
-      description: "Descrição do projeto 1",
+      image: SemImagem,
+      description: "Descrição do projeto 3",
       technologies: "JavaScript, React, Material UI, etc.",
       siteLink: "https://link-do-site.com",
       codeLink: "https://github.com/JefsonOliveira/projeto1",
     },
     {
-      name: "Projeto 2",
+      name: "Projeto 4",
       duration: "Jan 2023 - Abril 2024",
-      image: Avatar,
-      description: "Descrição do projeto 2",
+      image: SemImagem,
+      description: "Descrição do projeto 4",
       technologies: "JavaScript, React, Tailwind, etc.",
       siteLink: "https://link-do-site.com",
       codeLink: "https://github.com/JefsonOliveira/projeto2",
