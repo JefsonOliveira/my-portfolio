@@ -2,7 +2,8 @@ import React from "react";
 import { Box, Typography, Button, Grid, Container } from "@mui/material";
 import { styled } from "@mui/system";
 
-import SemImagem from "../../../../assets/images/sem-imagem.jpg";
+import SemImagem from "../../../../assets/images/projects/sem-imagem.jpg";
+import Imagem_Projeto_1 from "../../../../assets/images/projects/jefsonoliveira.com.br.png";
 
 const ProjectContainer = styled(Box)(({ theme }) => ({
   backgroundColor: "#333",
@@ -38,10 +39,10 @@ const Projects = () => {
     {
       name: "Projeto 1",
       duration: "Jan 2023 - Abril 2024",
-      image: SemImagem,
+      image: Imagem_Projeto_1,
       description: "Descrição do projeto 1",
       technologies: "JavaScript, React, Material UI, etc.",
-      siteLink: "https://link-do-site.com",
+      siteLink: "https://projetomultistep.jefsonoliveira.com.br",
       codeLink: "https://github.com/JefsonOliveira/projeto1",
     },
     {
@@ -92,37 +93,52 @@ const Projects = () => {
   return (
     <StyledProjects id="projects">
       <Container>
-        <Typography color="primary.contrastText" variant="h4" textAlign="center" gutterBottom>
+        <Typography
+          color="primary.contrastText"
+          variant="h4"
+          textAlign="center"
+          gutterBottom
+        >
           Projetos
         </Typography>
         <Grid container spacing={3}>
           {projects.map((project, index) => (
             <Grid item xs={12} sm={6} key={index}>
               <ProjectContainer className="fade-in">
-                <Typography color="primary.contrastText" variant="h6">{project.name}</Typography>
+                <Typography color="primary.contrastText" variant="h6">
+                  {project.name}
+                </Typography>
                 <Typography color="primary.contrastText" variant="subtitle2">
                   {project.duration}
                 </Typography>
                 <ProjectImage src={project.image} alt={project.name} />
-                <Typography color="primary.contrastText" variant="body1" paragraph>
+                <Typography
+                  color="primary.contrastText"
+                  variant="body1"
+                  paragraph
+                >
                   {project.description}
                 </Typography>
                 <Typography color="primary.contrastText" variant="body2">
                   Tecnologias: {project.technologies}
                 </Typography>
                 <Box mt={2}>
-                  {/* <Button
+                  <Button
                     variant="contained"
                     color="primary"
                     href={project.siteLink}
+                    target="_blank" // Abre o link em uma nova aba
+                    rel="noopener noreferrer" // Adiciona segurança ao abrir uma nova aba
                     sx={{ marginRight: 1 }}
                   >
                     Ver o Site
-                  </Button> */}
+                  </Button>
                   <Button
                     variant="outlined"
-                    sx={{ color: "#fff", borderColor: "#fff" }}
                     href={project.codeLink}
+                    target="_blank" // Abre o link em uma nova aba
+                    rel="noopener noreferrer" // Adiciona segurança ao abrir uma nova aba 
+                    sx={{ color: "#fff", borderColor: "#fff" }}
                   >
                     Ver o Código
                   </Button>
