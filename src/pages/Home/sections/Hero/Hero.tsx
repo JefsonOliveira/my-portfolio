@@ -8,9 +8,10 @@ import { AnimatedBackground } from "../../../../components/AnimatedBackground/An
 const Hero = () => {
   const StyledHero = styled("div")(({ theme }) => ({
     backgroundColor: theme.palette.primary.main,
-    height: "100vh",
+    minHeight: "100vh", // Garante que a altura mínima seja suficiente.
     display: "flex",
     alignItems: "center",
+    overflow: "hidden", // Evita deslocamentos indesejados.
     [theme.breakpoints.up("xs")]: {
       paddingTop: "100px",
     },
@@ -23,6 +24,8 @@ const Hero = () => {
     width: "75%",
     borderRadius: "50%",
     border: `1px solid ${theme.palette.primary.contrastText}`,
+    display: "block", // Garante que a imagem não cause deslocamento
+    margin: "0 auto", // Centraliza a imagem
   }));
 
   const StyledButton = styled("button")(({ theme }) => ({
@@ -122,7 +125,7 @@ const Hero = () => {
               <Grid item xs={12} md={4} display="flex" justifyContent="center">
                 <DownloadButton />
               </Grid>
-              <Grid item xs={12} md={4} display="flex" justifyContent="center">
+              <Grid item xs={12} md={4} display="flex" justifyContent="center" sx={{ mb: 3}}>
                 <StyledButton
                   onClick={() =>
                     (window.location.href = "mailto:kaironoliveira16@gmail.com")

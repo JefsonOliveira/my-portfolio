@@ -3,7 +3,8 @@ import { Box, Typography, Button, Grid, Container } from "@mui/material";
 import { styled } from "@mui/system";
 
 import SemImagem from "../../../../assets/images/projects/sem-imagem.jpg";
-import Imagem_Projeto_1 from "../../../../assets/images/projects/jefsonoliveira.com.br.png";
+import Imagem_Projeto_3 from "../../../../assets/images/projects/projeto_multistep.png";
+import Imagem_Projeto_4 from "../../../../assets/images/projects/projeto_tela_login.png"
 
 const ProjectContainer = styled(Box)(({ theme }) => ({
   backgroundColor: "#333",
@@ -38,10 +39,10 @@ const Projects = () => {
   const projects = [
     {
       name: "Projeto 1",
-      duration: "Jan 2023 - Abril 2024",
-      image: Imagem_Projeto_1,
-      description: "Descrição do projeto 1",
-      technologies: "JavaScript, React, Material UI, etc.",
+      duration: "Maio 2024",
+      image: Imagem_Projeto_3,
+      description: "O projeto multistep é um sistema de avaliação que guia o usuário por três etapas distintas, permitindo que ele forneça informações detalhadas sobre um produto ou serviço. As etapas incluem a coleta de dados pessoais, uma revisão detalhada, e uma mensagem final de agradecimento, criando uma experiência de feedback interativa e eficiente.",
+      technologies: "JavaScript, React, HTML, CSS.",
       siteLink: "https://projetomultistep.jefsonoliveira.com.br",
       codeLink: "https://github.com/JefsonOliveira/projeto1",
     },
@@ -56,19 +57,19 @@ const Projects = () => {
     },
     {
       name: "Projeto 3",
-      duration: "Jan 2023 - Abril 2024",
-      image: SemImagem,
-      description: "Descrição do projeto 3",
-      technologies: "JavaScript, React, Material UI, etc.",
-      siteLink: "https://link-do-site.com",
+      duration: "Maio 2024",
+      image: Imagem_Projeto_3,
+      description: "O projeto multistep é um sistema de avaliação que guia o usuário por três etapas distintas, permitindo que ele forneça informações detalhadas sobre um produto ou serviço. As etapas incluem a coleta de dados pessoais, uma revisão detalhada, e uma mensagem final de agradecimento, criando uma experiência de feedback interativa e eficiente.",
+      technologies: "JavaScript, React, HTML, CSS.",
+      siteLink: "https://projetomultistep.jefsonoliveira.com.br",
       codeLink: "https://github.com/JefsonOliveira/projeto1",
     },
     {
       name: "Projeto 4",
       duration: "Jan 2023 - Abril 2024",
-      image: SemImagem,
-      description: "Descrição do projeto 4",
-      technologies: "JavaScript, React, Tailwind, etc.",
+      image: Imagem_Projeto_4,
+      description: "Este projeto consiste em uma tela de login que realiza verificações básicas: valida se o e-mail está em um formato correto e se a senha atende aos requisitos mínimos. A aplicação é projetada para garantir que os usuários forneçam dados válidos antes de prosseguir.",
+      technologies: "JavaScript, React, HTML, CSS.",
       siteLink: "https://link-do-site.com",
       codeLink: "https://github.com/JefsonOliveira/projeto2",
     },
