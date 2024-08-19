@@ -24,8 +24,8 @@ const Hero = () => {
     width: "75%",
     borderRadius: "50%",
     border: `1px solid ${theme.palette.primary.contrastText}`,
-    display: "block", // Garante que a imagem não cause deslocamento
-    margin: "0 auto", // Centraliza a imagem
+    display: "block",
+    margin: "0 auto",
   }));
 
   const StyledButton = styled("button")(({ theme }) => ({
@@ -67,7 +67,7 @@ const Hero = () => {
   const DownloadButton = () => (
     <StyledButton>
       <a
-        href="/docs/Jefson_Oliveira_CV.pdf"
+        href="/public/docs/CV_DEV_JEFSONOLIVEIRA.pdf"
         download="Jefson_Oliveira_CV.pdf"
         style={{
           textDecoration: "none",
@@ -121,11 +121,12 @@ const Hero = () => {
               justifyContent="center"
               spacing={3}
               pt={3}
+              sx={{ mb: 3}}
             >
               <Grid item xs={12} md={4} display="flex" justifyContent="center">
                 <DownloadButton />
               </Grid>
-              <Grid item xs={12} md={4} display="flex" justifyContent="center" sx={{ mb: 3}}>
+              <Grid item xs={12} md={4} display="flex" justifyContent="center">
                 <StyledButton
                   onClick={() =>
                     (window.location.href = "mailto:kaironoliveira16@gmail.com")

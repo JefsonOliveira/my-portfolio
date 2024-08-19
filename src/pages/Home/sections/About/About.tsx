@@ -98,6 +98,7 @@ const About = () => {
               textAlign: "center",
               backgroundColor: "#f9f9f9",
               marginRight: "10px",
+              marginBottom: "10px",
               "&:hover": {
                 backgroundColor: "#232323",
                 color: "#fff",

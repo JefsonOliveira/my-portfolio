@@ -2,9 +2,11 @@ import React from "react";
 import { Box, Typography, Button, Grid, Container } from "@mui/material";
 import { styled } from "@mui/system";
 
-import SemImagem from "../../../../assets/images/projects/sem-imagem.jpg";
+// import SemImagem from "../../../../assets/images/projects/sem-imagem.jpg";
+import Imagem_Projeto_1 from "../../../../assets/images/projects/projeto_amatec.png";
+import Imagem_Projeto_2 from "../../../../assets/images/projects/projeto_Album.png";
 import Imagem_Projeto_3 from "../../../../assets/images/projects/projeto_multistep.png";
-import Imagem_Projeto_4 from "../../../../assets/images/projects/projeto_tela_login.png"
+import Imagem_Projeto_4 from "../../../../assets/images/projects/projeto_tela_login.png";
 
 const ProjectContainer = styled(Box)(({ theme }) => ({
   backgroundColor: "#333",
@@ -34,44 +36,52 @@ const ProjectImage = styled("img")({
 const Projects = () => {
   const StyledProjects = styled("div")(({ theme }) => ({
     backgroundColor: theme.palette.primary.main,
+    paddingBottom: "2rem",
   }));
 
   const projects = [
     {
       name: "Projeto 1",
-      duration: "Maio 2024",
-      image: Imagem_Projeto_3,
-      description: "O projeto multistep é um sistema de avaliação que guia o usuário por três etapas distintas, permitindo que ele forneça informações detalhadas sobre um produto ou serviço. As etapas incluem a coleta de dados pessoais, uma revisão detalhada, e uma mensagem final de agradecimento, criando uma experiência de feedback interativa e eficiente.",
+      duration: "Ago 2023 - Out 2023",
+      image: Imagem_Projeto_1,
+      description:
+        "Desenvolvimento uma aplicação web para promover serviços de assistência técnica em refrigeração, facilitando o contato dos clientes com a empresa por meio de integrações com redes sociais, proporcionando uma comunicação rápida e eficiente.",
       technologies: "JavaScript, React, HTML, CSS.",
-      siteLink: "https://projetomultistep.jefsonoliveira.com.br",
-      codeLink: "https://github.com/JefsonOliveira/projeto1",
+      siteLink: "https://support.jefsonoliveira.com.br",
+      codeLink:
+        "https://github.com/JefsonOliveira/Amatec_Refrigeracao/tree/main/Amatec-Refrigeracao",
     },
     {
       name: "Projeto 2",
-      duration: "Jan 2023 - Abril 2024",
-      image: SemImagem,
-      description: "Descrição do projeto 2",
-      technologies: "JavaScript, React, Tailwind, etc.",
-      siteLink: "https://link-do-site.com",
-      codeLink: "https://github.com/JefsonOliveira/projeto2",
+      duration: "Jun 2024",
+      image: Imagem_Projeto_2,
+      description:
+        "O projeto Album é uma aplicação web que permite aos usuários criar, organizar e compartilhar álbuns de fotos de forma fácil e intuitiva. Desenvolvido com ReactJS e estilizado com CSS, o Album oferece uma experiência amigável para gerenciar memórias visuais, com funcionalidades como upload de fotos, organização em galerias, e compartilhamento com links únicos.",
+      technologies: "JavaScript, React, HTML, CSS.",
+      siteLink: "https://jefsonoliveira.jefsonoliveira.com.br/",
+      codeLink: "https://github.com/JefsonOliveira/album",
     },
     {
       name: "Projeto 3",
       duration: "Maio 2024",
       image: Imagem_Projeto_3,
-      description: "O projeto multistep é um sistema de avaliação que guia o usuário por três etapas distintas, permitindo que ele forneça informações detalhadas sobre um produto ou serviço. As etapas incluem a coleta de dados pessoais, uma revisão detalhada, e uma mensagem final de agradecimento, criando uma experiência de feedback interativa e eficiente.",
+      description:
+        "O projeto multistep é um sistema de avaliação que guia o usuário por três etapas distintas, permitindo que ele forneça informações detalhadas sobre um produto ou serviço. As etapas incluem a coleta de dados pessoais, uma revisão detalhada, e uma mensagem final de agradecimento, criando uma experiência de feedback interativa e eficiente.",
       technologies: "JavaScript, React, HTML, CSS.",
       siteLink: "https://projetomultistep.jefsonoliveira.com.br",
-      codeLink: "https://github.com/JefsonOliveira/projeto1",
+      codeLink:
+        "https://github.com/JefsonOliveira/Curso-Hora-de-Codar/tree/main/arquivos/multistep_form_react",
     },
     {
       name: "Projeto 4",
-      duration: "Jan 2023 - Abril 2024",
+      duration: "Maio 2024",
       image: Imagem_Projeto_4,
-      description: "Este projeto consiste em uma tela de login que realiza verificações básicas: valida se o e-mail está em um formato correto e se a senha atende aos requisitos mínimos. A aplicação é projetada para garantir que os usuários forneçam dados válidos antes de prosseguir.",
+      description:
+        "Este projeto consiste em uma tela de login que realiza verificações básicas: valida se o e-mail está em um formato correto e se a senha atende aos requisitos mínimos. A aplicação é projetada para garantir que os usuários forneçam dados válidos antes de prosseguir.",
       technologies: "JavaScript, React, HTML, CSS.",
-      siteLink: "https://link-do-site.com",
-      codeLink: "https://github.com/JefsonOliveira/projeto2",
+      siteLink: "https://staging.jefsonoliveira.com.br",
+      codeLink:
+        "https://github.com/JefsonOliveira/Curso-Hora-de-Codar/tree/main/arquivos/tela_login",
     },
   ];
 
@@ -99,6 +109,7 @@ const Projects = () => {
           variant="h4"
           textAlign="center"
           gutterBottom
+          sx={{ mb: 4, paddingTop: "2rem" }}
         >
           Projetos
         </Typography>
@@ -130,7 +141,7 @@ const Projects = () => {
                     href={project.siteLink}
                     target="_blank" // Abre o link em uma nova aba
                     rel="noopener noreferrer" // Adiciona segurança ao abrir uma nova aba
-                    sx={{ marginRight: 1 }}
+                    sx={{ marginRight: 1, mb: 1.5 }}
                   >
                     Ver o Site
                   </Button>
@@ -138,8 +149,8 @@ const Projects = () => {
                     variant="outlined"
                     href={project.codeLink}
                     target="_blank" // Abre o link em uma nova aba
-                    rel="noopener noreferrer" // Adiciona segurança ao abrir uma nova aba 
-                    sx={{ color: "#fff", borderColor: "#fff" }}
+                    rel="noopener noreferrer" // Adiciona segurança ao abrir uma nova aba
+                    sx={{ color: "#fff", borderColor: "#fff", mb: 1.5 }}
                   >
                     Ver o Código
                   </Button>
