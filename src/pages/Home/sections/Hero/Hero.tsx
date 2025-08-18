@@ -67,7 +67,7 @@ const Hero = () => {
   const DownloadButton = () => (
     <StyledButton>
       <a
-        href="/public/docs/CV_DEV_JEFSONOLIVEIRA.pdf"
+        href="/docs/CV_DEV_JEFSONOLIVEIRA.pdf"
         download="Jefson_Oliveira_CV.pdf"
         style={{
           textDecoration: "none",
