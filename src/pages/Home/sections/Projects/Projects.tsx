@@ -1,105 +1,233 @@
-import React from "react";
-import { Box, Typography, Button, Grid, Container } from "@mui/material";
+import React, { useMemo, useState } from "react";
+import {
+  Box,
+  Typography,
+  Button,
+  Grid,
+  Container,
+  Tabs,
+  Tab,
+  Card,
+  CardContent,
+  CardMedia,
+  Chip,
+  Stack,
+} from "@mui/material";
 import { styled } from "@mui/system";
 
-// import SemImagem from "../../../../assets/images/projects/sem-imagem.jpg";
 import Imagem_Projeto_1 from "../../../../assets/images/projects/projeto_amatec.png";
 import Imagem_Projeto_2 from "../../../../assets/images/projects/projeto_Album.png";
 import Imagem_Projeto_3 from "../../../../assets/images/projects/projeto_multistep.png";
 import Imagem_Projeto_4 from "../../../../assets/images/projects/projeto_tela_login.png";
 
-const ProjectContainer = styled(Box)(({ theme }) => ({
-  backgroundColor: "#333",
+type ProjectKind = "PERSONAL" | "PROFESSIONAL";
+type ProjectStatus = "DEPLOYED" | "IN_PROGRESS";
+
+type Project = {
+  name: string;
+  kind: ProjectKind;
+  status: ProjectStatus;
+  duration: string;
+  image?: string;
+  headline: string;
+  bullets: string[];
+  tech: string[];
+  siteLink?: string;
+  codeLink?: string;
+  featured?: boolean;
+};
+
+const StyledProjects = styled("section")(({ theme }) => ({
+  backgroundColor: theme.palette.primary.main,
+  padding: "2.5rem 0",
+}));
+
+const ProjectCard = styled(Card)(({ theme }) => ({
+  backgroundColor: "#2b2b2b",
   color: "#fff",
+  borderRadius: 16,
   border: `1px solid ${theme.palette.warning.dark}`,
-  borderRadius: "8px",
-  boxShadow: "0 4px 8px rgba(0, 0, 0, 0.1)",
-  padding: "20px",
-  margin: "20px 0",
-  textAlign: "left",
-  opacity: 0,
-  transform: "translateY(20px)",
-  transition: "opacity 0.5s ease-out, transform 0.5s ease-out",
-  "&.visible": {
-    opacity: 1,
-    transform: "translateY(0)",
+  transition: "transform 160ms ease, box-shadow 160ms ease",
+  "& *": {
+    color: "inherit",
+  },
+  "&:hover": {
+    transform: "translateY(-4px)",
+    boxShadow: "0 10px 24px rgba(0,0,0,0.35)",
   },
 }));
 
-const ProjectImage = styled("img")({
-  width: "100%",
-  borderRadius: "8px",
-  marginTop: "10px",
-  marginBottom: "10px",
-});
+const Projects: React.FC = () => {
+  const [tab, setTab] = useState<"ALL" | ProjectKind>("ALL");
 
-const Projects = () => {
-  const StyledProjects = styled("div")(({ theme }) => ({
-    backgroundColor: theme.palette.primary.main,
-    paddingBottom: "2rem",
-  }));
-
-  const projects = [
+  const projects: Project[] = [
+    // ===== FEATURED (PESSOAL) =====
     {
-      name: "Projeto 1",
+      name: "HouseBills",
+      kind: "PERSONAL",
+      status: "IN_PROGRESS",
+      duration: "2025 - atual",
+      // image: Imagem_HouseBills,
+      headline:
+        "App de controle de despesas pessoais/familiares com autenticação e CRUD completo.",
+      bullets: [
+        "Backend em NestJS com Prisma + PostgreSQL",
+        "Auth com JWT + bcrypt e módulos de Users/Expenses",
+        "Base pronta para evoluir relatórios e categorias",
+      ],
+      tech: ["NestJS", "TypeScript", "Prisma", "PostgreSQL", "JWT"],
+      // siteLink: "",
+      // codeLink: "https://github.com/...repository..."
+      featured: true,
+    },
+    {
+      name: "Gym Planner",
+      kind: "PERSONAL",
+      status: "IN_PROGRESS",
+      duration: "2025 - atual",
+      // image: Imagem_GymPlanner,
+      headline:
+        "Sistema para criar e acompanhar treinos semanais com organização por dias e exercícios.",
+      bullets: [
+        "Modelagem de treino por semana (Program/ProgramDay) e fluxo de criação",
+        "Estrutura pensada para Docker + Postgres e evolução do produto",
+        "Planejado frontend React para visualização e edição do treino",
+      ],
+      tech: ["NestJS", "TypeScript", "PostgreSQL", "Docker"],
+      featured: true,
+    },
+
+    // ===== FEATURED (FREELA/PROFISSIONAL) =====
+    {
+      name: "Delícias da Lê",
+      kind: "PROFESSIONAL",
+      status: "DEPLOYED",
+      duration: "nov/2025 - dez/2025",
+      // image: Imagem_Delicias,
+      headline:
+        "Landing page para encomendas com foco em conversão e presença digital.",
+      bullets: [
+        "Estrutura de seções + CTA direto para contato/compra",
+        "Carrossel de avaliações com link para google Reviews",
+        "Deploy em Cloudflare Pages com melhorias de perfomance/UX",
+      ],
+      tech: ["React", "Vite", "Cloudflare Pages"],
+      siteLink: "https://4add7c6d.delicias-da-le.pages.dev/",
+      // codeLink: "",
+      featured: true,
+    },
+
+    // ===== FRELLA/PROFISSIONAL (EM ANDAMENTO) =====
+    {
+      name: "Amatec Refrigeração",
+      kind: "PROFESSIONAL",
+      status: "IN_PROGRESS",
+      duration: "2026 - atual",
+      headline:
+        "Landing page para servições de manutenção com foco em conversão e presença digital.",
+      bullets: [
+        "Reestruturação visual e responsividade (mobile-first)",
+        "CTA e conteúdo reorganizados para facilitar contato",
+        "Preparação para deploy continuo e manutenção mais fácil",
+      ],
+      tech: ["React", "Vite"],
+      // siteLink: "",
+      // odeLink: "",
+    },
+
+    // ===== OUTROS PROJETOS (PESSOAIS) =====
+    {
+      name: "Amatec Refrigeração (Versão antiga)",
+      kind: "PERSONAL",
+      status: "DEPLOYED",
       duration: "Ago 2023 - Out 2023",
       image: Imagem_Projeto_1,
-      description:
-        "Desenvolvimento uma aplicação web para promover serviços de assistência técnica em refrigeração, facilitando o contato dos clientes com a empresa por meio de integrações com redes sociais, proporcionando uma comunicação rápida e eficiente.",
-      technologies: "JavaScript, React, HTML, CSS.",
+      headline:
+        "Landing page com foco em conversão e contato rápido (CTA + redes sociais).",
+      bullets: [
+        "Layout responsivo e seção de serviços com CTA",
+        "Integrações para contato rápido via redes sociais",
+        "Deploy com domínio e publicação do projeto",
+      ],
+      tech: ["React", "JavaScript", "HTML", "CSS"],
       siteLink: "https://support.jefsonoliveira.com.br",
       codeLink:
         "https://github.com/JefsonOliveira/Amatec_Refrigeracao/tree/main/Amatec-Refrigeracao",
     },
     {
-      name: "Projeto 2",
+      name: "Album",
+      kind: "PERSONAL",
+      status: "DEPLOYED",
       duration: "Jun 2024",
       image: Imagem_Projeto_2,
-      description:
-        "O projeto Album é uma aplicação web que permite aos usuários criar, organizar e compartilhar álbuns de fotos de forma fácil e intuitiva. Desenvolvido com ReactJS e estilizado com CSS, o Album oferece uma experiência amigável para gerenciar memórias visuais, com funcionalidades como upload de fotos, organização em galerias, e compartilhamento com links únicos.",
-      technologies: "JavaScript, React, HTML, CSS.",
+      headline:
+        "Aplicação para criar e organizar álbuns com galeria e compartilhamento.",
+      bullets: [
+        "Organização de fotos em galerias/coleções",
+        "Interface simples com foco em navegação",
+        "Deploy do projeto com link público",
+      ],
+      tech: ["React", "JavaScript", "HTML", "CSS"],
       siteLink: "https://jefsonoliveira.jefsonoliveira.com.br/",
       codeLink: "https://github.com/JefsonOliveira/album",
     },
     {
-      name: "Projeto 3",
-      duration: "Maio 2024",
+      name: "Multi-step Form",
+      kind: "PERSONAL",
+      status: "DEPLOYED",
+      duration: "Mai 2024",
       image: Imagem_Projeto_3,
-      description:
-        "O projeto multistep é um sistema de avaliação que guia o usuário por três etapas distintas, permitindo que ele forneça informações detalhadas sobre um produto ou serviço. As etapas incluem a coleta de dados pessoais, uma revisão detalhada, e uma mensagem final de agradecimento, criando uma experiência de feedback interativa e eficiente.",
-      technologies: "JavaScript, React, HTML, CSS.",
+      headline: "Form em etapas com experiência guiada e revisão final.",
+      bullets: [
+        "Fluxo em 3 etapas com estado controlado",
+        "Validações e revisão antes do envio",
+        "UI clara para reduzir abandono",
+      ],
+      tech: ["React", "JavaScript", "HTML", "CSS"],
       siteLink: "https://projetomultistep.jefsonoliveira.com.br",
       codeLink:
         "https://github.com/JefsonOliveira/Curso-Hora-de-Codar/tree/main/arquivos/multistep_form_react",
     },
     {
-      name: "Projeto 4",
-      duration: "Maio 2024",
+      name: "Tela de Login",
+      kind: "PERSONAL",
+      status: "DEPLOYED",
+      duration: "Mai 2024",
       image: Imagem_Projeto_4,
-      description:
-        "Este projeto consiste em uma tela de login que realiza verificações básicas: valida se o e-mail está em um formato correto e se a senha atende aos requisitos mínimos. A aplicação é projetada para garantir que os usuários forneçam dados válidos antes de prosseguir.",
-      technologies: "JavaScript, React, HTML, CSS.",
+      headline: "Login com validações e feedback de erro para o usuário.",
+      bullets: [
+        "Validação de e-mail e requisitos mínimos de senha",
+        "Feedback visual para campos inválidos",
+        "Base pronta para integração com autenticação real",
+      ],
+      tech: ["React", "JavaScript", "HTML", "CSS"],
       siteLink: "https://staging.jefsonoliveira.com.br",
       codeLink:
         "https://github.com/JefsonOliveira/Curso-Hora-de-Codar/tree/main/arquivos/tela_login",
     },
   ];
 
-  React.useEffect(() => {
-    const handleScroll = () => {
-      const elements = document.querySelectorAll(".fade-in");
-      elements.forEach((element) => {
-        const position = element.getBoundingClientRect().top;
-        const screenPosition = window.innerHeight / 1.2;
-        if (position < screenPosition) {
-          element.classList.add("visible");
-        }
-      });
-    };
+  const filteredProjects = useMemo(() => {
+    const list =
+      tab === "ALL" ? projects : projects.filter((p) => p.kind === tab);
 
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
+    // Featured primeiro, depois DEPLOYED, depois IN_PROGRESS, depois alfabético
+    return [...list].sort((a, b) => {
+      const f = Number(!!b.featured) - Number(!!a.featured);
+      if (f !== 0) return f;
+
+      const statusRank = (s: ProjectStatus) => (s === "DEPLOYED" ? 0 : 1);
+      const sr = statusRank(a.status) - statusRank(b.status);
+      if (sr !== 0) return sr;
+
+      return a.name.localeCompare(b.name);
+    });
+  }, [projects, tab]);
+
+  const kindLabel = (k: ProjectKind) =>
+    k === "PERSONAL" ? "Pessoal" : "Freela/Profissional";
+  const statusLabel = (s: ProjectStatus) =>
+    s === "DEPLOYED" ? "Deploy" : "Em andamento";
 
   return (
     <StyledProjects id="projects">
@@ -109,53 +237,171 @@ const Projects = () => {
           variant="h4"
           textAlign="center"
           gutterBottom
-          sx={{ mb: 4, paddingTop: "2rem" }}
+          sx={{ mb: 2 }}
         >
           Projetos
         </Typography>
+
+        <Box sx={{ display: "flex", justifyContent: "center", mb: 3 }}>
+          <Tabs
+            value={tab}
+            onChange={(_, v) => setTab(v)}
+            TabIndicatorProps={{ style: { backgroundColor: "#fff" } }}
+            sx={{
+              "& .MuiTab-root": { color: "rgba(255,255,255,0.75)" },
+              "& .MuiTab-root.Mui-selected": { color: "#fff" },
+            }}
+          >
+            <Tab value="ALL" label="Todos" />
+            <Tab value="PERSONAL" label="Pessoais" />
+            <Tab value="PROFESSIONAL" label="Freelas/Profissionais" />
+          </Tabs>
+        </Box>
+
         <Grid container spacing={3}>
-          {projects.map((project, index) => (
-            <Grid item xs={12} sm={6} key={index}>
-              <ProjectContainer className="fade-in">
-                <Typography color="primary.contrastText" variant="h6">
-                  {project.name}
-                </Typography>
-                <Typography color="primary.contrastText" variant="subtitle2">
-                  {project.duration}
-                </Typography>
-                <ProjectImage src={project.image} alt={project.name} />
-                <Typography
-                  color="primary.contrastText"
-                  variant="body1"
-                  paragraph
+          {filteredProjects.map((project) => (
+            <Grid
+              item
+              xs={12}
+              sm={6}
+              key={project.name}
+              sx={{ display: "flex" }}
+            >
+              <ProjectCard
+                sx={{ width: "100%", display: "flex", flexDirection: "column" }}
+              >
+                {project.image ? (
+                  <CardMedia
+                    component="img"
+                    height="210"
+                    image={project.image}
+                    alt={project.name}
+                  />
+                ) : null}
+
+                <CardContent
+                  sx={{ display: "flex", flexDirection: "column", flexGrow: 1 }}
                 >
-                  {project.description}
-                </Typography>
-                <Typography color="primary.contrastText" variant="body2">
-                  Tecnologias: {project.technologies}
-                </Typography>
-                <Box mt={2}>
-                  <Button
-                    variant="contained"
-                    color="primary"
-                    href={project.siteLink}
-                    target="_blank" // Abre o link em uma nova aba
-                    rel="noopener noreferrer" // Adiciona segurança ao abrir uma nova aba
-                    sx={{ marginRight: 1, mb: 1.5 }}
+                  <Stack
+                    direction="row"
+                    spacing={1}
+                    flexWrap="wrap"
+                    useFlexGap
+                    sx={{ mb: 1 }}
                   >
-                    Ver o Site
-                  </Button>
-                  <Button
-                    variant="outlined"
-                    href={project.codeLink}
-                    target="_blank" // Abre o link em uma nova aba
-                    rel="noopener noreferrer" // Adiciona segurança ao abrir uma nova aba
-                    sx={{ color: "#fff", borderColor: "#fff", mb: 1.5 }}
+                    <Chip
+                      size="small"
+                      label={kindLabel(project.kind)}
+                      variant="outlined"
+                      sx={{
+                        color: "#fff",
+                        borderColor: "rgba(255,255,255,0.35)",
+                        "& .MuiChip-label": { color: "#fff" },
+                      }}
+                    />
+
+                    <Chip
+                      size="small"
+                      label={statusLabel(project.status)}
+                      color={
+                        project.status === "DEPLOYED" ? "success" : "warning"
+                      }
+                    />
+                    {project.featured ? (
+                      <Chip size="small" label="Destaque" color="secondary" />
+                    ) : null}
+                  </Stack>
+
+                  <Typography variant="h6" sx={{ mb: 0.3 }}>
+                    {project.name}
+                  </Typography>
+                  <Typography
+                    variant="subtitle2"
+                    sx={{ opacity: 0.85, mb: 1.2 }}
                   >
-                    Ver o Código
-                  </Button>
-                </Box>
-              </ProjectContainer>
+                    {project.duration}
+                  </Typography>
+                  <Typography variant="body2" sx={{ mb: 1.5, opacity: 0.95 }}>
+                    {project.headline}
+                  </Typography>
+
+                  <Box component="ul" sx={{ pl: 2, mt: 0, mb: 2 }}>
+                    {project.bullets.map((b) => (
+                      <li key={b}>
+                        <Typography variant="body2" sx={{ opacity: 0.95 }}>
+                          {b}
+                        </Typography>
+                      </li>
+                    ))}
+                  </Box>
+
+                  <Stack
+                    direction="row"
+                    spacing={1}
+                    flexWrap="wrap"
+                    useFlexGap
+                    sx={{ mb: 2 }}
+                  >
+                    {project.tech.map((t) => (
+                      <Chip
+                        key={t}
+                        label={t}
+                        size="small"
+                        variant="outlined"
+                        sx={{
+                          color: "#fff",
+                          borderColor: "rgba(255,255,255,0.35)",
+                        }}
+                      />
+                    ))}
+                  </Stack>
+                  <Box sx={{ mt: "auto" }}>
+                    <Stack
+                      direction="row"
+                      spacing={1}
+                      flexWrap="wrap"
+                      useFlexGap
+                    >
+                      {project.siteLink ? (
+                        <Button
+                          variant="contained"
+                          color="primary"
+                          href={project.siteLink}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                        >
+                          Demo
+                        </Button>
+                      ) : null}
+
+                      {project.codeLink ? (
+                        <Button
+                          variant="outlined"
+                          href={project.codeLink}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          sx={{ color: "#fff", borderColor: "#fff" }}
+                        >
+                          GitHub
+                        </Button>
+                      ) : (
+                        project.kind === "PROFESSIONAL" && (
+                          <Chip
+                            label="Código/links indisponíveis"
+                            size="small"
+                            variant="outlined"
+                            sx={{
+                              color: "#fff",
+                              borderColor: "rgba(255,255,255,0.35)",
+                              "& .MuiChip-label": { color: "#fff" },
+                            }}
+                          />
+                        )
+                      )}
+                    </Stack>
+                  </Box>
+                </CardContent>
+              </ProjectCard>
             </Grid>
           ))}
         </Grid>
