@@ -19,6 +19,7 @@ import Imagem_Projeto_1 from "../../../../assets/images/projects/projeto_amatec.
 import Imagem_Projeto_2 from "../../../../assets/images/projects/projeto_Album.png";
 import Imagem_Projeto_3 from "../../../../assets/images/projects/projeto_multistep.png";
 import Imagem_Projeto_4 from "../../../../assets/images/projects/projeto_tela_login.png";
+import Imagem_Projeto_5 from "../../../../assets/images/projects/projeto_delicias_da_le.png";
 
 type ProjectKind = "PERSONAL" | "PROFESSIONAL";
 type ProjectStatus = "DEPLOYED" | "IN_PROGRESS";
@@ -103,7 +104,7 @@ const Projects: React.FC = () => {
       kind: "PROFESSIONAL",
       status: "DEPLOYED",
       duration: "nov/2025 - dez/2025",
-      // image: Imagem_Delicias,
+      image: Imagem_Projeto_5,
       headline:
         "Landing page para encomendas com foco em conversão e presença digital.",
       bullets: [
