@@ -113,7 +113,7 @@ const Projects: React.FC = () => {
         "Deploy em Cloudflare Pages com melhorias de perfomance/UX",
       ],
       tech: ["React", "Vite", "Cloudflare Pages"],
-      siteLink: "https://4add7c6d.delicias-da-le.pages.dev/",
+      siteLink: "https://d26bf347.delicias-da-le.pages.dev/",
       // codeLink: "",
       featured: true,
     },
