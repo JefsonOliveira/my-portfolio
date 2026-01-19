@@ -9,7 +9,7 @@ import {
   Tab,
   Card,
   CardContent,
-  CardMedia,
+  // CardMedia,
   Chip,
   Stack,
 } from "@mui/material";
@@ -272,12 +272,28 @@ const Projects: React.FC = () => {
                 sx={{ width: "100%", display: "flex", flexDirection: "column" }}
               >
                 {project.image ? (
-                  <CardMedia
-                    component="img"
-                    height="210"
-                    image={project.image}
-                    alt={project.name}
-                  />
+                  <Box
+                    sx={{
+                      width: "100%",
+                      aspectRatio: "16 / 9",
+                      overflow: "hidden",
+                      backgroundColor: "#1f1f1f",
+                    }}
+                  >
+                    <Box
+                      component="img"
+                      src={project.image}
+                      alt={project.name}
+                      loading="lazy"
+                      sx={{
+                        width: "100%",
+                        height: "100%",
+                        objectFit: "cover", // ✅ preenche tudo (sem sobra)
+                        objectPosition: "center 79%", // pode trocar pra "top"
+                        display: "block",
+                      }}
+                    />
+                  </Box>
                 ) : null}
 
                 <CardContent
